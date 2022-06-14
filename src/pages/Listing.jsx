@@ -8,6 +8,9 @@ import { getAuth } from 'firebase/auth'
 import { db } from '../firebase.config'
 import Spinner from '../Components/Spinner'
 import shareIcon from '../assets/svg/shareIcon.svg'
+import Slide from '../Components/Slide'
+
+
 
 function Listing() {
     const [listing, setListing] = useState(null)
@@ -41,7 +44,9 @@ function Listing() {
 
     return (
         <main>
-            {/* slider */}
+            
+            <Slide images={[listing.imgUrls]}/>
+
             <div className='shareIconDiv' onClick={()=> {
                 navigator.clipboard.writeText(window.location.href)
                 setSharedLinkCopied(true)
@@ -52,6 +57,7 @@ function Listing() {
                 <img src={shareIcon} alt='shate' />
             </div>
             { sharedLinkCopied && <p className='linkCopied'>Link copied</p>}
+
             <div className='listingDetails'>
                 <p className='listingName'>{listing.name} - ${ listing.offer 
                 ? listing.discountedPrice
@@ -72,6 +78,8 @@ function Listing() {
                     </p>
                     
                 )}
+
+
                 <ul className='listingDetailsList'>
                     <li>
                         {listing.bedrooms > 1 ? `${listing.bedrooms} Bedrooms` : 'Bedroom'}
