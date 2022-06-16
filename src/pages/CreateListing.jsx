@@ -104,7 +104,8 @@ function CreateListing() {
         data.status === 'ZERO_RESULTS'
           ? undefined
           : data.results[0]?.formatted_address
-
+      console.log('location', response)
+      console.log(process.env.REACT_APP_GEOCODE_API)
       if (location === undefined || location.includes('undefined')) {
         setLoading(false)
         toast.error('Please enter a correct address')
